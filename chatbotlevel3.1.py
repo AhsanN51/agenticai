@@ -48,8 +48,6 @@ def make_tool_graph():
     builder.add_edge(START, "tool_calling_llm")
     builder.add_conditional_edges(
         "tool_calling_llm",
-        # If the latest message (result) from assistant is a tool call -> tools_condition routes to tools
-        # If the latest message (result) from assistant is not a tool call -> tools_condition routes to END
         tools_condition
     )
     builder.add_edge("tools", "tool_calling_llm")
@@ -58,4 +56,4 @@ def make_tool_graph():
     graph = builder.compile()
     return graph
 
-tool_agent = make_tool_graph()
+tool_agent = make_tool_graph()
